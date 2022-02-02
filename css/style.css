@@ -1,0 +1,16 @@
+body{
+    background: #EEF9BF;
+    text-align: center;
+    padding-top: 40px;
+}
+
+h1{
+    height: 63px;
+    color: #75B79E;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+    font-family: 'Roboto', sans-serif;    
+    font-weight: bold;
+    
+}
