@@ -1,16 +1,53 @@
+* {
+	box-sizing: border-box;
+}
+
 body{
     background: #EEF9BF;
     text-align: center;
     padding-top: 40px;
 }
 
+header{
+    width: 100%vw;    
+    margin-bottom: 47px;
+}
+
 h1{
-    height: 63px;
     color: #75B79E;
     font-size: 56px;
     line-height: 66px;
     letter-spacing: -0.004em;
     font-family: 'Roboto', sans-serif;    
-    font-weight: bold;
-    
+    font-weight: bold;    
+}
+
+main{
+    width: 100vw;
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+.cartas{
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+.carta{
+    width: 117px;
+    height: 146px;
+    background: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    margin-bottom: 34px;
+    margin-left: 17px;
+    margin-right: 17px;
+}
+
+.carta img{
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-top: 20px;
 }
