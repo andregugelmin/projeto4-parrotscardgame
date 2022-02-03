@@ -37,17 +37,41 @@ main{
 .carta{
     width: 117px;
     height: 146px;
-    background: #A7E9AF;
-    border: 1px solid #99CEA8;
     border-radius: 5px;
     margin-bottom: 34px;
     margin-left: 17px;
     margin-right: 17px;
+    position: relative;
 }
 
-.carta img{
+.face{
+    width: 100%;
+    height: 100%;
+    background: #A7E9AF;
+    border: 1px solid #99CEA8;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
+    top: 0;
+    left: 0;
+}
+
+.face img{
     width: 100px;
     height: 100px;
     margin: auto;
     margin-top: 20px;
+}
+
+.costas-face{
+    transform: rotateY(180deg);
+}
+
+.costas-clique {
+    transform: rotateY(0deg);
+}
+
+.frente-clique{
+    transform: rotateY(-180deg);
 }
