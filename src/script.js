@@ -1,4 +1,6 @@
 let qtdCartas = 0;
+let cartasEncontradas = 0;
+let jogadas = 0;
 
 let cartasArray = [];
 const cartasGifs = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.gif', 'metalparrot.gif', 'revertitparrot.gif', 'tripletsparrot.gif', 'unicornparrot.gif'];
@@ -31,11 +33,11 @@ function distribuirCartas(){
 
     for(let i = 0; i<qtdCartas; i++){
         cartas.innerHTML += `
-        <div class="carta clicavel" onclick="virarCarta(this, ${cartasArray[i]})">
-            <span class="frente-face face">
+        <div class="carta clicavel" data-identifier="card" onclick="virarCarta(this, ${cartasArray[i]})">
+            <span class="frente-face face" data-identifier="back-face">
                 <img src="midia/front.png" alt="Carta virada pra baixo"/>
             </span>
-            <span class="costas-face face">
+            <span class="costas-face face" data-identifier="front-face">
                 <img src="midia/${cartasGifs[cartasArray[i]]}" alt="gif">
             </span>
         </div>
@@ -63,7 +65,13 @@ function virarCarta(objCarta, numCarta){
             numSegundaCarta = numCarta;
             checarCartasViradas();
         }
-    }    
+
+        jogadas++;
+    }
+
+    if(cartasEncontradas==qtdCartas){
+        setTimeout(fimDeJogo, 1000); //Precisei colocar esse timeout pois estava dando o aviso antes de realmente virar a carta
+    }
     
 }
 
@@ -83,6 +91,7 @@ function checarCartasViradas(){
 
 function desabilitarCliqueCarta(carta){
     carta.classList.remove("clicavel");
+    cartasEncontradas++;
 }
 
 function desvirarCarta(carta){
@@ -93,9 +102,13 @@ function desvirarCarta(carta){
     costas.classList.remove("costas-clique");
 }
 
+function fimDeJogo(){
+    alert("Você terminou o jogo em " + jogadas + " jogadas!");
+}
+
 
 function embaralhador() { 
-	return Math.random() - 0.5; 
+    return Math.random() - 0.5; 
 }
     
 inicializao();
