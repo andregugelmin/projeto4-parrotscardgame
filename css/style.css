@@ -9,7 +9,7 @@ body{
 }
 
 header{
-    width: 100%vw;    
+    width: 100%;    
     margin-bottom: 47px;
 }
 
@@ -20,6 +20,16 @@ h1{
     letter-spacing: -0.004em;
     font-family: 'Roboto', sans-serif;    
     font-weight: bold;    
+}
+
+.relogio{
+    font-family: 'Roboto', sans-serif;       
+    font-weight: bold;   
+    font-size: 30px;  
+    color: #a30f0f;
+    position: absolute;
+    right: 30px;
+    top: 115px;
 }
 
 main{
@@ -75,3 +85,15 @@ main{
 .frente-clique{
     transform: rotateY(-180deg);
 }
+
+
+  @media (max-width: 536px) {
+    .relogio{
+        top: 180px;
+    }
+  }
+  @media (max-width: 314px) {
+    .relogio{
+        top: 240px;
+    }
+  }

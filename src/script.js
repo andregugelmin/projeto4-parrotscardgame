@@ -1,9 +1,11 @@
-let qtdCartas = 0;
-let cartasEncontradas = 0;
-let jogadas = 0;
+let qtdCartas;
+let cartasEncontradas;
+let jogadas;
 
 let cartasArray = [];
 const cartasGifs = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.gif', 'metalparrot.gif', 'revertitparrot.gif', 'tripletsparrot.gif', 'unicornparrot.gif'];
+const cartasHTML = document.querySelector(".cartas");
+const relogioHTML = document.querySelector(".relogio");
 
 let primeiraCarta;
 let numPrimeiraCarta;
@@ -11,9 +13,12 @@ let numPrimeiraCarta;
 let segundaCarta;
 let numSegundaCarta;
 
-let qtdCartasViradas = 0;
+let qtdCartasViradas;
+let tempo;
+let intervalTempo;
 
 function inicializao(){
+    inicializarVariaveis();
     while(qtdCartas % 2 !== 0 || qtdCartas<4 || qtdCartas>14){
         qtdCartas = prompt("Quantas cartas você deseja(numeros pares de 4 a 14");
     }
@@ -24,15 +29,14 @@ function inicializao(){
     }
 
     distribuirCartas();
+    intervalTempo = setInterval(atualizarTempo, 1000);
 }
 
 function distribuirCartas(){    
-    const cartas = document.querySelector(".cartas");
-
     cartasArray.sort(embaralhador);
 
     for(let i = 0; i<qtdCartas; i++){
-        cartas.innerHTML += `
+        cartasHTML.innerHTML += `
         <div class="carta clicavel" data-identifier="card" onclick="virarCarta(this, ${cartasArray[i]})">
             <span class="frente-face face" data-identifier="back-face">
                 <img src="midia/front.png" alt="Carta virada pra baixo"/>
@@ -43,7 +47,13 @@ function distribuirCartas(){
         </div>
       `;
     }
+}
 
+function atualizarTempo(){
+    tempo++;
+    relogioHTML.innerHTML = `
+    <p>${tempo}</p>
+  `;
 }
 
 function virarCarta(objCarta, numCarta){
@@ -103,12 +113,34 @@ function desvirarCarta(carta){
 }
 
 function fimDeJogo(){
-    alert("Você terminou o jogo em " + jogadas + " jogadas!");
+    clearInterval(intervalTempo);
+
+    alert("Você terminou o jogo em " + jogadas + " jogadas!\nTempo: " + tempo + " segundos");    
+    
+
+    const reiniciar = prompt("Deseja reiniciar o jogo? (s ou n)");
+    if(reiniciar == 's'){
+        cartasHTML.innerHTML = '';
+        inicializao();
+    }
 }
 
 
 function embaralhador() { 
     return Math.random() - 0.5; 
+}
+
+function inicializarVariaveis(){
+    qtdCartas = 0;
+    cartasEncontradas = 0;
+    jogadas = 0;
+    primeiraCarta = null;
+    numPrimeiraCarta = 0;
+    segundaCarta = null;
+    numSegundaCarta = 0;
+    qtdCartasViradas = 0;
+    cartasArray = [];
+    tempo = 0;
 }
     
 inicializao();
